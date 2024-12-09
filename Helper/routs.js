@@ -56,18 +56,20 @@ router.post('/create/user', (req, res) => {
         User.find().then((users)=>{
         const formData = querystring.parse(body); 
         console.log('Полученные данные:', formData);
-        const newUser = new User({ id: users.length + 1, name: formData.name,about:formData.about })
+        const id=users.length + 1
+        const newUser = new User({ id: id, name: formData.name,about:formData.about })
         newUser.save()
         const hash = crypto.createHash('md5').update(String(users.length)).digest('hex');
-        res.writeHead(302, { Location: `/user/hash/${hash}` });
+        res.writeHead(302, { Location: `/user/hash/${id}/${hash}` });
         res.end()
     })});
 });
 
-router.get('/user/hash/:hash', (req, res) => {
+router.get('/user/hash/:id/:hash', (req, res) => {
     Render(req, res, 'hash',{
         title: `App || ${req.params.hash}`,
         hash: req.params.hash,
+        id: req.params.id,
     });
 }); 
  
