@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles/css.css">
+        <title><%=title %></title>
+        <script>
+                async function updateUser(event) {
+            event.preventDefault(); // Отключаем стандартное поведение формы
+
+            // Собираем данные из формы
+            const formData = {
+                id:document.getElementById('formEdit').dataset.id,
+                name: document.getElementById('name').value,
+                about: document.getElementById('about').value
+            };
+
+
+                 fetch('/user/info', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData) // Отправляем только name и about
+                }).then(window.location.reload())
+                alert(`успех`)
+                window.location.reload()
+        }
+        </script>
+    </head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <h1>Информация о пользователи</h1>
+    <form action="/user/info" method="POST">
+        <label for="Id">Id:</label>
+        <input type="number" id="Id" name="Id" required>
+        <button type="submit">Найти</button>
+    </form> 
+  
+    <% if (user) { %>
+        <h2>Информация о пользователе:</h2>
+        <p>ID: <%= user.id %></p>
+        <p>Имя: <%= user.name %></p>
+        <p>О пользователе: <%= user.about %></p>
+        <form id="formEdit" data-id="<%= user.id %>" onsubmit="updateUser(event)">
+            <input type="hidden" name="_method" >
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" value="<%= user.name %>" required>
+            <label for="about">О пользователе:</label>
+            <input type="text" id="about" name="about" value="<%= user.about %>" required>
+            <button  type="submit">Изменить</button>
+        </form>
+    <% } %>
+
+    <% if (Error) { %>
+        <h1><%= Error %></h1>
+    <% } %>
+
+</body>
+</html>

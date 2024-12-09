@@ -1,0 +1,31 @@
+{
+  "name": "node-local-host",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "cross-spawn": "^7.0.3",
+    "ejs": "^3.1.10",
+    "isexe": "^2.0.0",
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.4",
+    "path-key": "^3.1.1",
+    "react": "^18.3.1",
+    "shebang-command": "^2.0.0",
+    "shebang-regex": "^3.0.0",
+    "which": "^2.0.2"
+  },
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

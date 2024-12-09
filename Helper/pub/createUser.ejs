@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs')%>
+<body>
+    <%- include('./partials/nav.ejs')%>
+    <h1>Создать пользователя</h1>
+    <form action="/create/user" method="POST">
+        <label for="name">Имя пользователя:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="name">О пользователе:</label>
+        <input type="text" id="about" name="about" required>
+        <button type="submit">Создать</button> 
+    </form>
+    
+</body> 
+</html>
